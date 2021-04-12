@@ -4,6 +4,7 @@ import { CssBaseline } from '@material-ui/core';
 import Navigation from './components/Navigation/Navigation';
 import SignIn from './pages/SignIn/SignIn';
 import ContactUs from './pages/ContactUs/ContactUs';
+import Home from './pages/Home/Home';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Navigation />
 
       <Switch>
+        <Route exact match from='/' render={(props) => <Home {...props} />} />
         <Route exact from='/login' render={(props) => <SignIn {...props} />} />
         <Route
           exact
