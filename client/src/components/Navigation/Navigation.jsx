@@ -6,12 +6,10 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import {
-  ShoppingCart as CartIcon,
-  AccountCircle as AccountIcon,
-} from '@material-ui/icons';
+import { ShoppingCart as CartIcon } from '@material-ui/icons';
 import { withRouter } from 'react-router-dom';
 import NavigationDrawer from '../NavigationDrawer/NavigationDrawer';
+import AvatarMenu from '../AvatarMenu/AvatarMenu';
 import useStyles from './styles';
 
 const Navigation = () => {
@@ -19,7 +17,7 @@ const Navigation = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position='relative'>
+      <AppBar>
         <Toolbar>
           <NavigationDrawer />
 
@@ -28,13 +26,13 @@ const Navigation = () => {
           </Typography>
 
           <IconButton color='inherit'>
-            <AccountIcon />
+            <AvatarMenu />
           </IconButton>
-          <IconButton color='inherit'>
-            <CartIcon />
-          </IconButton>
+
+          <CartIcon />
         </Toolbar>
       </AppBar>
+      <Toolbar />
     </div>
   );
 };
