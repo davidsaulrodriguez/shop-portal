@@ -8,6 +8,7 @@ const brandRoutes = require('./brand');
 const contactRoutes = require('./contact');
 const merchantRoutes = require('./merchant');
 const orderRoutes = require('./order');
+const authRoutes = require('./auth');
 const reviews = require('./isReviewed');
 
 // Post Routes
@@ -21,5 +22,6 @@ router.use('/contact', contactRoutes);
 router.use('/merchant', merchantRoutes);
 router.use('/order', orderRoutes);
 router.use('/reviews', reviews);
+router.use('/auth', authRoutes);
 
 module.exports = router;
