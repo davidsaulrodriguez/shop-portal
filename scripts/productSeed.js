@@ -74,6 +74,7 @@ const productSeed = [
     isFeatured: true,
     created: new Date(Date.now()),
     updated: new Date(Date.now()),
+    'react-router-dom': '^5.2.0',
   },
   {
     sku: 'mp-red-sneaker-345',
