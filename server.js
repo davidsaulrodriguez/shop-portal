@@ -5,14 +5,18 @@ const routes = require('./routes');
 const PORT = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const cors = require('cors');
+const passport = require('passport');
 
 server.use(helmet());
+server.use(cors());
 server.use(
   express.urlencoded({
     extended: true,
   })
 );
 server.use(express.json());
+server.use(passport.initialize());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static('client/build'));
