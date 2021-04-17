@@ -25,7 +25,7 @@ class FeaturedSlider extends Component {
 
   componentDidMount() {
     axios
-      .get('/api/product/')
+      .get('/api/product/feature/true')
       .then((res) => {
         this.setState({
           featured: res.data.map((item) => ({
