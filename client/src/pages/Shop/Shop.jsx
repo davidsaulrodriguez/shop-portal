@@ -1,16 +1,8 @@
-import React from 'react';
-import ProductsList from '../../__mock__/ProductsList';
+import React, { useState, useEffect } from 'react';
 import Masonry from 'react-masonry-css';
 import useStyles from './styles';
-import {
-  CardMedia,
-  CardHeader,
-  CardActions,
-  CardContent,
-  Typography,
-  Button,
-  Card,
-} from '@material-ui/core';
+import ProductCard from '../../components/ProductCard/ProductCard';
+import axios from 'axios';
 
 const Shop = () => {
   const classes = useStyles();
@@ -20,31 +12,28 @@ const Shop = () => {
     700: 2,
     500: 1,
   };
+  const [allShopItems, setAllShopItems] = useState([]);
+  useEffect(() => {
+    axios.get('/api/product/').then((res) => {
+      setAllShopItems(res.data);
+    });
+  }, []);
+
   return (
     <Masonry
       breakpointCols={breakPoints}
       className={classes.myMasonryGrid}
       columnClassName={classes.myMasonryGridColumn}>
-      {ProductsList
-        ? ProductsList.map((product, key) => {
+      {allShopItems
+        ? allShopItems.map((product, key) => {
             return (
               <div key={key} className={classes.myMasonryGridColumnDiv}>
-                <Card>
-                  <CardHeader title={product.title} subheader={product.price} />
-                  <CardMedia
-                    style={{ height: '200px' }}
-                    image={product.imgUrl}
-                  />
-                  <CardContent>
-                    <Typography variant='body2' component='p'>
-                      {product.description}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size='small'>ADD TO CART</Button>
-                    <Button size='small'>DETAILS</Button>
-                  </CardActions>
-                </Card>
+                <ProductCard
+                  title={product.name}
+                  imgUrl={product.imageUrl}
+                  price={product.price}
+                  description={product.description}
+                />
               </div>
             );
           })
