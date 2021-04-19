@@ -5,6 +5,10 @@ const routes = require('./routes');
 const PORT = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const cors = require('cors');
 
 server.use(helmet());
 server.use(
@@ -12,7 +16,25 @@ server.use(
     extended: true,
   })
 );
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+};
+server.use(cors(corsOptions));
 server.use(express.json());
+
+server.use(
+  session({
+    secret: process.env.JWT_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+server.use(cookieParser(process.env.JWT_SECRET));
+server.use(passport.initialize());
+server.use(passport.session());
+require('./config/passport')(passport);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static('client/build'));

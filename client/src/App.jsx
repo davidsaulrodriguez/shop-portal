@@ -7,16 +7,16 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import Shop from './pages/Shop/Shop';
 import SignUp from './pages/SignUp/SignUp';
 import CheckOut from './pages/CheckOut/CheckOut';
+// import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   return (
     <>
       <CssBaseline />
       <Navigation />
-
       <Switch>
-        <Route exact from='/login' render={(props) => <SignIn {...props} />} />
-        <Route exact from='/Shop' render={(props) => <Shop {...props} />} />
+        <Route path='/login' render={(props) => <SignIn {...props} />} />
+        <Route path='/shop' render={(props) => <Shop {...props} />} />
         <Route
           exact
           from='/contact'

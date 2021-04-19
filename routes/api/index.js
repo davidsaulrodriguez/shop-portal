@@ -10,6 +10,7 @@ const merchantRoutes = require('./merchant');
 const orderRoutes = require('./order');
 const paymentRoutes = require('./payment');
 const reviews = require('./isReviewed');
+const auth = require('./auth');
 
 // Post Routes
 router.use('/user', userRoutes);
@@ -23,5 +24,6 @@ router.use('/merchant', merchantRoutes);
 router.use('/order', orderRoutes);
 router.use('/payment', paymentRoutes);
 router.use('/reviews', reviews);
+router.use('/auth', auth);
 
 module.exports = router;
